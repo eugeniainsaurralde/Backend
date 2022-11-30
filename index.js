@@ -3,7 +3,7 @@ class productManager{
         this.products= []
     }
 
-    getProducts = () =>{return this.products}
+    getProducts = () =>{ console.log(this.products)}
 
     getNextID= () =>{
         const count = this.products.length
@@ -30,31 +30,38 @@ class productManager{
             validatedCode,
             stock
         }
-        if((title && description && price && thumbnail && code && stock)!= null){
+        if((title && description && price && thumbnail && validatedCode && stock)!= null){
             this.products.push(product)
-        }
-        
+        }   
     }
 
     validateCode = (code)=>{
-       const product= this.products.find(product => product.validateCode != code)
-      /*  console.log(product)
+       const product= this.products.find(product => product.validatedCode == code)
        if( product == undefined) return code
-       else{
-        console.log("ERROR. MISMO CODIGO")
-       } */
+       else return null
     }
 
     getProductByID = (productID) =>{
         const productByID = this.products.find(product=> product.id == productID)
         if(productByID != undefined) console.log(productByID) 
+        else console.log ("Not found")
     }
 }
 
-const myProducts = new productManager()
-myProducts.addProducts("coca", "gaseosa", 30, "foto", 45, 10)
-myProducts.addProducts("sprite","gaseosa", 40, "foto", 4, 16)
-myProducts.addProducts("fanta", "gaseosa cero", 40, "foto", 45, 16)
 
-myProducts.getProductByID(1)
-/* console.log(myProducts.products) */
+/* myProducts.addProducts("coca", "gaseosa", 30, "foto", 45, 10)
+myProducts.addProducts("sprite","gaseosa", 40, "foto", 4, 16)
+myProducts.addProducts("fanta", 40, "foto", 45, 16)*/
+
+/* myProducts.getProducts() */
+/* myProducts.getProductByID(1) */
+/* console.log(myProducts.products)  */
+
+
+ //TESTING
+ const myProducts = new productManager()
+ 
+ myProducts.addProducts("producto prueba", "Este es un producto de prueba", 200, "sin imagen", "abc123", 25)
+ myProducts.addProducts("producto prueba", "Este es un producto de prueba", 200, "sin imagen", "abc123", 25)
+ myProducts.getProducts()
+ myProducts.getProductByID(1)
